@@ -2,6 +2,7 @@ package com.team1.assessment;
 
 
 public class ConfigurationManager {
+
     private static volatile ConfigurationManager instance;
 
 

@@ -31,9 +31,6 @@ public class DocumentProcessor {
     public void processDocument(DocumentJob job) {
         systemLog.info("🚀 Iniciando procesamiento...");
 
-        // ========================================
-        // VALIDACIONES CON CHAIN OF RESPONSIBILITY
-        // ========================================
         systemLog.info("🔗 Ejecutando cadena de validaciones...");
         ValidationResult validationResult = validationChain.validate(job, configManager, systemLog);
 
@@ -55,6 +52,7 @@ public class DocumentProcessor {
         archiveService.archive(documentFile);
 
         emailService.send(job.getUserEmail(), "Procesamiento completado", "Su documento está listo.");
+
         triggerBilling(job.getRequestingUser(), job.getOutputFormat());
         systemLog.info("✅ Trabajo finalizado exitosamente.");
     }
